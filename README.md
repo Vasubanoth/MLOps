@@ -1,108 +1,113 @@
-# ================================================
-# END-TO-END MLOPS PIPELINE WITH TFX
-# Customer Churn Prediction (Local Execution)
-# ================================================
+END-TO-END MLOPS PIPELINE WITH TFX
+Customer Churn Prediction (Local Execution)
+----------------------------------------------------
+----------------------------------------------------
+Project Objective
+----------------------------------------------------
 
-# Project Objective
-# ------------------------------------------------
-# * Build a reproducible ML pipeline
-# * Perform automated data validation
-# * Apply feature engineering
-# * Train a churn classification model
-# * Save the trained model for serving
-# * Track artifacts and metadata
-
-
-# Tech Stack
-# ------------------------------------------------
-# * Python 3.10
-# * TensorFlow 2.12
-# * TensorFlow Extended (TFX 1.14.0)
-# * TensorFlow Transform
-# * TensorFlow Model Analysis
-# * Apache Beam
-# * Kubeflow-style DAG orchestration (Local)
+* Build a reproducible ML pipeline
+* Perform automated data validation
+* Apply feature engineering
+* Train a churn classification model
+* Save the trained model for serving
+* Track artifacts and metadata
 
 
-# Project Structure
-# ------------------------------------------------
-# MLOps/
-# ├── pipeline.py        -> Assembles full TFX pipeline
-# ├── model.py           -> Keras churn classification model
-# ├── transform.py       -> Feature engineering logic
-# ├── requirements.txt   -> Dependencies
-# └── data/
-#     └── churn.csv      -> Telco Customer Churn dataset
+----------------------------------------------------
+Tech Stack
+----------------------------------------------------
+
+* Python 3.10
+* TensorFlow 2.12
+* TensorFlow Extended (TFX 1.14.0)
+* TensorFlow Transform
+* TensorFlow Model Analysis
+* Apache Beam
+* Local TFX Orchestration
 
 
-# TFX Pipeline Components
-# ------------------------------------------------
-# 1. CsvExampleGen    -> Reads raw CSV data
-# 2. StatisticsGen    -> Computes dataset statistics
-# 3. SchemaGen        -> Infers feature schema
-# 4. ExampleValidator -> Detects anomalies in data
-# 5. Transform        -> Applies preprocessing & feature scaling
-# 6. Trainer          -> Trains churn classification model
-# 7. Pusher           -> Saves trained model for serving
+----------------------------------------------------
+Project Structure
+----------------------------------------------------
+
+MLOps/
+|
+|-- pipeline.py        -> Assembles full TFX pipeline
+|-- model.py           -> Keras churn classification model
+|-- transform.py       -> Feature engineering logic
+|-- requirements.txt   -> Dependencies
+|
+|-- data/
+    |-- churn.csv      -> Telco Customer Churn dataset
 
 
-# Feature Engineering (transform.py)
-# ------------------------------------------------
-# * Scales numeric features:
-#     - tenure
-#     - MonthlyCharges
-#     - TotalCharges
-#
-# * Converts label:
-#     - "Yes" -> 1
-#     - "No"  -> 0
+----------------------------------------------------
+TFX Pipeline Components
+----------------------------------------------------
+
+1. CsvExampleGen    -> Reads raw CSV data
+2. StatisticsGen    -> Computes dataset statistics
+3. SchemaGen        -> Infers feature schema
+4. ExampleValidator -> Detects anomalies in data
+5. Transform        -> Applies preprocessing & scaling
+6. Trainer          -> Trains churn classification model
+7. Pusher           -> Saves trained model
 
 
-# Model Architecture (model.py)
-# ------------------------------------------------
-# Input -> Dense(16, ReLU)
-#       -> Dense(8, ReLU)
-#       -> Dense(1, Sigmoid)
-#
-# Loss      : Binary Crossentropy
-# Optimizer : Adam
-# Metric    : Accuracy
+----------------------------------------------------
+Feature Engineering
+----------------------------------------------------
+
+Scaled Numeric Features:
+- tenure
+- MonthlyCharges
+- TotalCharges
+
+Label Conversion:
+- "Yes" -> 1
+- "No"  -> 0
 
 
-# Setup Instructions
-# ------------------------------------------------
-# 1. Clone repository
-#    git clone <your-repo-link>
-#    cd MLOps
-#
-# 2. Create virtual environment
-#    py -3.10 -m venv venv
-#    venv\Scripts\activate
-#
-# 3. Install dependencies
-#    pip install -r requirements.txt
-#
-# 4. Run pipeline
-#    python pipeline.py
+----------------------------------------------------
+Model Architecture
+----------------------------------------------------
+
+Input
+  -> Dense(16, ReLU)
+  -> Dense(8, ReLU)
+  -> Dense(1, Sigmoid)
+
+Loss      : Binary Crossentropy
+Optimizer : Adam
+Metric    : Accuracy
 
 
-# Output
-# ------------------------------------------------
-# * pipeline_output/  -> Contains TFX artifacts & metadata
-# * serving_model/    -> Final trained model
+----------------------------------------------------
+How To Run
+----------------------------------------------------
+
+1) Create virtual environment
+   py -3.10 -m venv venv
+   venv\Scripts\activate
+
+2) Install dependencies
+   pip install -r requirements.txt
+
+3) Run pipeline
+   python pipeline.py
 
 
-# What This Project Demonstrates
-# ------------------------------------------------
-# * Modular ML pipeline design
-# * Automated data validation
-# * Reproducible training workflow
-# * Production-style artifact tracking
-# * End-to-end ML lifecycle automation
-# * Practical MLOps implementation
+----------------------------------------------------
+Output
+----------------------------------------------------
+
+pipeline_output/  -> TFX artifacts & metadata
+serving_model/    -> Final trained model
 
 
-# Author
-# ------------------------------------------------
-# Banoth Vasu
-# Machine Learning & MLOps Enthusiast
+----------------------------------------------------
+Author
+----------------------------------------------------
+
+Banoth Vasu
+Machine Learning & MLOps Enthusiast
